@@ -68,5 +68,29 @@ namespace RestaurantRater.Controllers
             return Ok(restaurant);
         }
 
+
+        [HttpPut]  //updating a restaurant kind of like a post but it targets a specific object that exists
+        public async Task<IHttpActionResult> UpdateRestaurant([FromUri]int id,[FromBody] Restaurant model)  
+            //[FromUri] is to indicate that the id is coming from the address, then we need the new restaurant data from the body of the request
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Restaurant restaurant = await _context.Restaurants.FindAsync(id); //just like we did before, find the restaurant by Id
+
+            if (restaurant == null)
+            {
+                return NotFound();
+            }
+
+            restaurant.Name = model.Name;
+            restaurant.Address = model.Address;
+            restaurant.Rating = model.Rating;
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
     }
 }

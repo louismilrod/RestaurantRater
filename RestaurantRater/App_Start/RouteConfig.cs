@@ -17,7 +17,8 @@ namespace RestaurantRater
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+            );  // api/Restaurant <<this is for an api controller
+                // it will just say Restaurant for an MVC controller
         }
     }
 }
