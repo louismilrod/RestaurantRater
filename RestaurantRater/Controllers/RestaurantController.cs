@@ -87,9 +87,40 @@ namespace RestaurantRater.Controllers
 
             restaurant.Name = model.Name;
             restaurant.Address = model.Address;
-            restaurant.Rating = model.Rating;
+            
             await _context.SaveChangesAsync();
-            return Ok();
+            return Ok("updated!");
+
+            /*int updateCount = await _context.SaveChangesAsync();
+            if (updateCount == 1)
+            {
+                return Ok();
+            }
+            else
+            {
+                return InternalServerError();
+            } */
+        }
+
+        [HttpDelete]
+        public async Task<IHttpActionResult> DeleteRestaurant([FromUri] int id)
+        {
+            Restaurant restaurant = await _context.Restaurants.FindAsync(id);
+
+            if (restaurant == null)
+            {
+                return NotFound();
+            }
+
+            _context.Restaurants.Remove(restaurant);
+
+            if (await _context.SaveChangesAsync() == 1)
+            {
+                return Ok();
+            }
+
+            return InternalServerError();
+
         }
 
     }
