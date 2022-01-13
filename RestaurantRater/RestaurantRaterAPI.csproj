@@ -177,10 +177,17 @@
     <Compile Include="Migrations\202201121648350_CreateRatingsTable.designer.cs">
       <DependentUpon>202201121648350_CreateRatingsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201122035591_RemoveRatingProperty.cs" />
+    <Compile Include="Migrations\202201122035591_RemoveRatingProperty.designer.cs">
+      <DependentUpon>202201122035591_RemoveRatingProperty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Rating.cs" />
+    <Compile Include="Models\RatingListItem.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\RestaurantDbContext.cs" />
+    <Compile Include="Models\RestaurantDetail.cs" />
+    <Compile Include="Models\RestaurantListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -272,6 +279,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201121648350_CreateRatingsTable.resx">
       <DependentUpon>202201121648350_CreateRatingsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201122035591_RemoveRatingProperty.resx">
+      <DependentUpon>202201122035591_RemoveRatingProperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

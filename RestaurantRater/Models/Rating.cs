@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -28,6 +29,8 @@ namespace RestaurantRater.Models
             }
         }
         // EF will assume that this is a foreign key without this annotation because its along the lines of [DBSet]ID
+        [Required]
+        [ForeignKey(nameof(Restaurant))]
         public int RestaurantId { get; set; }
 
         public virtual Restaurant Restaurant {get; set;}

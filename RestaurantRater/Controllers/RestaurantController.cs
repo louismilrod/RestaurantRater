@@ -48,11 +48,36 @@ namespace RestaurantRater.Controllers
         }
 
         [HttpGet] //Get method, async task so it can run while other code is running
-        public async Task<IHttpActionResult> Get()
+        public async Task<IHttpActionResult> GetRestaurant()
         {
             List<Restaurant> restaurants = await _context.Restaurants.ToListAsync();
 
-            return Ok(restaurants);
+            List<RestaurantListItem> restaurantLists = restaurants.Select(r => new RestaurantListItem()
+            {
+                Name = r.Name,
+                Location = r.Address,
+                AverageRating = r.Ratings.Count == 0 ? 0 : r.Ratings.Select(rating => rating.AvergeRating).Average()
+            }).ToList();
+
+            return Ok(restaurantLists);
+
+           /* List<RestaurantListItem> restaurentListTwo = restaurants.Select(r =>
+            {
+                List<Ratings> ratings = r.Ratings;
+                double average;
+                if (ratings.Count == 0)                         this is the same as the few lines above.
+                {
+                    average = 0;
+                }
+                average = ratings.Select(a => a.AvergeRating).Average();
+
+                return new RestaurantListItem()
+                {
+                    Name = r.Name,
+                    Location = r.Address,
+                    AverageRating = average
+                };
+            }).ToList();*/
         }
 
         [HttpGet]
